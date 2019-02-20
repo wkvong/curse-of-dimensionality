@@ -1223,4 +1223,22 @@ stim_prob <- bind_rows(list(all_stim_prob, single_stim_prob))
 
 ggplot(stim_prob, aes(x = stim_prob, y = perf, colour = dim, size = n)) +
     geom_point() +
-    facet_grid( ~ structure)
+    scale_size(guide = 'none') +
+    facet_grid( ~ structure) +
+    labs(x = "Log probability of stimulus", y = "Proportion correct") +
+    scale_colour_discrete(name = "Dimensionality") +
+    theme_few() +
+    theme(legend.position = "bottom",
+          panel.border = element_rect(colour = "black", size = 1),
+          axis.title.x = element_text(size = 16),
+          axis.title.y = element_text(size = 16),
+          axis.text.x = element_text(size = 16),
+          axis.text.y = element_text(size = 16),
+          axis.ticks.x = element_line(colour = "black"),
+          axis.ticks.y = element_line(colour = "black"),
+          legend.title = element_text(size = 16),
+          legend.text = element_text(size = 16),
+          strip.text.x = element_text(size = 16),
+          strip.text.y = element_text(size = 16))
+
+ggsave("../data/output/stim-prob-performance.pdf")
